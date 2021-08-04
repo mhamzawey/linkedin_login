@@ -18,6 +18,7 @@ class LinkedInUserWidget extends StatefulWidget {
     required this.redirectUrl,
     required this.clientId,
     required this.clientSecret,
+    this.accessType,
     this.onError,
     this.destroySession = false,
     this.appBar,
@@ -40,6 +41,7 @@ class LinkedInUserWidget extends StatefulWidget {
   final PreferredSizeWidget? appBar;
   final bool? destroySession;
   final List<String> projection;
+  final String? accessType;
 
   @override
   State createState() => _LinkedInUserWidgetState();
@@ -62,6 +64,7 @@ class _LinkedInUserWidgetState extends State<LinkedInUserWidget> {
         clientIdParam: widget.clientId,
         redirectUrlParam: widget.redirectUrl,
         urlState: Uuid().v4(),
+        accessType: widget.accessType,
       ),
     );
 

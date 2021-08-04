@@ -14,6 +14,9 @@ abstract class Config {
   String get initialUrl;
 
   bool isCurrentUrlMatchToRedirection(String url);
+
+  static const String lightProfile = "r_lightprofile";
+  static const String basicProfile = "r_basicprofile";
 }
 
 class AccessCodeConfiguration implements Config {
@@ -23,6 +26,7 @@ class AccessCodeConfiguration implements Config {
     required this.clientSecretParam,
     required this.projectionParam,
     required this.urlState,
+    this.accessType,
   });
 
   final String? clientSecretParam;
@@ -30,6 +34,7 @@ class AccessCodeConfiguration implements Config {
   final String? redirectUrlParam;
   final String? clientIdParam;
   final String urlState;
+  final String? accessType;
 
   @override
   String? get clientId => clientIdParam;
@@ -55,7 +60,7 @@ class AccessCodeConfiguration implements Config {
       '&client_id=$clientId'
       '&state=$urlState'
       '&redirect_uri=$redirectUrl'
-      '&scope=r_basicprofile%20r_emailaddress';
+      '&scope=${accessType ?? Config.lightProfile}%20r_emailaddress';
 
   @override
   bool isCurrentUrlMatchToRedirection(String url) => _isRedirectionUrl(url);
@@ -76,12 +81,14 @@ class AuthCodeConfiguration implements Config {
     required this.clientIdParam,
     required this.urlState,
     this.frontendRedirectUrlParam,
+    this.accessType
   });
 
   final String? redirectUrlParam;
   final String? clientIdParam;
   final String? frontendRedirectUrlParam;
   final String urlState;
+  final String? accessType;
 
   @override
   String? get clientId => clientIdParam;
@@ -107,7 +114,7 @@ class AuthCodeConfiguration implements Config {
       '&client_id=$clientId'
       '&state=$state'
       '&redirect_uri=$redirectUrl'
-      '&scope=r_basicprofile%20r_emailaddress';
+      '&scope=${accessType ?? Config.lightProfile}%20r_emailaddress';
 
   @override
   bool isCurrentUrlMatchToRedirection(String url) =>
