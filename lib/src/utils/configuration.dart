@@ -15,7 +15,7 @@ abstract class Config {
 
   bool isCurrentUrlMatchToRedirection(String url);
 
-  static const String lightProfile = "r_lightprofile";
+  static const String lightProfile = "r_liteprofile";
   static const String basicProfile = "r_basicprofile";
 }
 
