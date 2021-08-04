@@ -27,6 +27,9 @@ class LinkedInUserWidget extends StatefulWidget {
       ProjectionParameters.localizedLastName,
       ProjectionParameters.firstName,
       ProjectionParameters.lastName,
+      ProjectionParameters.headline,
+      ProjectionParameters.localizedHeadline,
+      ProjectionParameters.vanityName
     ],
   }) : assert(projection.isNotEmpty);
 

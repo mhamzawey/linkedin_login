@@ -12,14 +12,16 @@ import 'package:linkedin_login/src/wrappers/linked_in_token_object.dart';
 /// while [userId] is LinkedIn generated field same as values inside [token]
 class LinkedInUserModel {
   /// Create user model based on response of LinkedIn APIs
-  LinkedInUserModel({
-    this.firstName,
-    this.lastName,
-    this.profilePicture,
-    this.userId,
-    this.localizedFirstName,
-    this.localizedLastName,
-  });
+  LinkedInUserModel(
+      {this.firstName,
+      this.lastName,
+      this.profilePicture,
+      this.userId,
+      this.localizedFirstName,
+      this.localizedLastName,
+      this.headline,
+      this.localizedHeadline,
+      this.vanityName});
 
   /// Convert response from API to [LinkedInUserModel] object
   factory LinkedInUserModel.fromJson(Map<String, dynamic> json) {
@@ -29,6 +31,9 @@ class LinkedInUserModel {
     final localizedFirstName = json['localizedFirstName'];
     final localizedLastName = json['localizedLastName'];
     final userId = json['id'];
+    final headline = json['headline'];
+    final localizedHeadline = json['localizedHeadline'];
+    final vanityName = json['vanityName'];
 
     return LinkedInUserModel(
       firstName:
@@ -41,6 +46,10 @@ class LinkedInUserModel {
       userId: userId,
       localizedFirstName: localizedFirstName,
       localizedLastName: localizedLastName,
+      headline:
+          headline != null ? LinkedInPersonalInfo.fromJson(headline) : null,
+      localizedHeadline: localizedHeadline,
+      vanityName: vanityName,
     );
   }
 
@@ -50,10 +59,13 @@ class LinkedInUserModel {
   final String? localizedFirstName, localizedLastName;
   LinkedInProfileEmail? email;
   late LinkedInTokenObject token;
+  final LinkedInPersonalInfo? headline;
+  final String? localizedHeadline;
+  final String? vanityName;
 
   @override
   String toString() {
-    return 'LinkedInUserModel{firstName: $firstName, lastName: $lastName, profilePicture: $profilePicture, userId: $userId, localizedFirstName: $localizedFirstName, localizedLastName: $localizedLastName, email: $email, token: $token}';
+    return 'LinkedInUserModel{firstName: $firstName, lastName: $lastName, profilePicture: $profilePicture, userId: $userId, localizedFirstName: $localizedFirstName, localizedLastName: $localizedLastName, email: $email, token: $token, headline:$headline, localizedHeadline: $localizedHeadline, vanityName: $vanityName }';
   }
 }
 
