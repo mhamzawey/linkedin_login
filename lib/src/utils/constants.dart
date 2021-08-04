@@ -8,6 +8,10 @@ class ProjectionParameters {
   static const String localizedFirstName = 'localizedFirstName';
   static const String profilePicture =
       'profilePicture(displayImage~:playableStreams)';
+  static const String headline = 'headline';
+  static const String localizedHeadline = 'localizedHeadline';
+  static const String vanityName = 'vanityName';
+
 
   static List<String> projectionWithoutPicture = const [
     id,
